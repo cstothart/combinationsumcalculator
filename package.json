@@ -1,0 +1,23 @@
+{
+  "name": "combinationsumcalculator",
+  "version": "1.0.0",
+  "description": "Find all unique combinations of given numbers that equal a target number.",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cstothart/combinationsumcalculator.git"
+  },
+  "author": "Cary Stothart",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cstothart/combinationsumcalculator/issues"
+  },
+  "homepage": "https://github.com/cstothart/combinationsumcalculator#readme",
+  "devDependencies": {
+    "tachyons": "^4.10.0",
+    "webpack": "^4.41.2"
+  }
+}
