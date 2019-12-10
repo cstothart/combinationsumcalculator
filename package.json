@@ -4,7 +4,7 @@
   "description": "Find all unique combinations of given numbers that equal a target number.",
   "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build-css": "sass --watch ./scss/main.scss ./public/css/main.css"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/cstothart/combinationsumcalculator/issues"
   },
-  "homepage": "https://github.com/cstothart/combinationsumcalculator#readme"
+  "homepage": "https://github.com/cstothart/combinationsumcalculator#readme",
+  "devDependencies": {
+    "sass": "^1.23.7"
+  }
 }
