@@ -91,12 +91,12 @@ function handleInput() {
       printCombinations(combinationArray);
       if (!combinationArray.length) {
         deleteOutputElements();
-        createOutputElement("No combination of the given candidate numbers equals the given sum.");
+        createOutputElement("No combination of the given numbers adds up to the given sum.");
       }
     }
   } else {
       deleteOutputElements();
-      createOutputElement("Combinations that equal the given sum will appear here.", 
+      createOutputElement("Combinations that add up to the given sum will appear here.", 
                           "placeholder");
   }
 }
