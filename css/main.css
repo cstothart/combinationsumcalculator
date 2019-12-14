@@ -1,0 +1,106 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
+html {
+  font-size: 16px;
+  line-height: 1.3;
+}
+@media (min-width: 800px) {
+  html {
+    font-size: 18px;
+  }
+}
+@media (min-width: 1200px) {
+  html {
+    font-size: 20px;
+    line-height: 1.4;
+  }
+}
+
+body {
+  background-color: #222222;
+  font-family: "Roboto", sans-serif;
+  color: #dfdddd;
+  margin: 0;
+}
+
+header h1 {
+  margin: 1rem;
+}
+header p {
+  margin: 1rem;
+}
+
+textarea {
+  width: 100%;
+  height: 10rem;
+  font-size: 1rem;
+  letter-spacing: 0.1rem;
+  font-family: "Roboto", sans-serif;
+  margin: 1rem;
+}
+
+input[type=text] {
+  font-size: 1rem;
+  height: 1rem;
+  letter-spacing: 0.1rem;
+  margin: 1rem;
+}
+
+.alert {
+  color: #ff5e5e;
+}
+
+.placeholder {
+  color: #8e8e8e;
+}
+
+.section-container {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+}
+@media (max-width: 800px) {
+  .section-container {
+    -ms-grid-columns: 1fr;
+    grid-template-columns: 1fr;
+  }
+}
+
+.input-style {
+  background: transparent;
+  border: 3px solid #dfdddd;
+  color: #dfdddd;
+  width: 100%;
+  padding: 1rem;
+}
+.input-style:focus {
+  border: 3px solid #c5c54a;
+  outline: none;
+}
+
+#input-section {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  display: flex;
+  flex-wrap: wrap;
+  -ms-grid-row-align: start;
+}
+@media (max-width: 800px) {
+  #input-section {
+    width: 100%;
+  }
+}
+
+#output-section {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  font-size: 1rem;
+  letter-spacing: 0.1rem;
+}
+#output-section p {
+  margin: 1rem;
+  transition: all 0.3s linear;
+}
+
+/*# sourceMappingURL=main.css.map */
