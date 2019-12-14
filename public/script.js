@@ -21,20 +21,73 @@ function combinations(numArr) {
   return func([], numArr, []);
 }
 
-const candidates = [1, 2, 3, 4, 5, 2];
-const target = 8;
-
-combinations(candidates).forEach(function(comb) {
-  if (sum(comb) == target) {
-    let combStr = "";
-    comb.forEach(function(num, i) {
-      if (i == comb.length - 1) {
-        combStr += num + " = ";
-      } else {
-        combStr += num + " + ";
-      }
-    })
-    combStr += target;
-    console.log(combStr);
+function extractNumbers(str) {
+  if (!str) {
+    return false;
+  } else {
+    const strNumbers = str.match(/(\d+\.\d+)|(\d+)/g);
+    if (!strNumbers) {
+      return false;
+    } else {
+      const numbers = strNumbers.map(function(strNumber) {
+        return Number(strNumber);
+      })
+      return numbers;
+    }
   }
-});
+}
+
+function extractCombinations(candidates, target) {
+  if (candidates.length >= 1 && target.length == 1) {
+    let combinationArray = [];
+    combinations(candidates).forEach(function(comb) {
+      if (sum(comb) == target) {
+        let combStr = "";
+        comb.forEach(function(num, i) {
+          if (i == comb.length - 1) {
+            combStr += num + " = ";
+          } else {
+            combStr += num + " + ";
+          }
+        })
+        combStr += target;
+        combinationArray.push(combStr);
+      }
+    });
+    return combinationArray;
+  } else {
+    return false;
+  }
+}
+
+function printCombinations(combinationArray) {
+    let combinationsStr = ""
+    combinationArray.forEach(function(combination) {
+      combinationsStr += combination + "\n";
+    })
+    outputSection.textContent = combinationsStr;
+}
+
+function handleInput() {
+  target = extractNumbers(targetBox.value);
+  candidates = extractNumbers(candidatesBox.value);
+  if (candidates && target) {
+    let combinationArray = extractCombinations(candidates, target);
+    if (combinationArray)
+      printCombinations(combinationArray);
+  } else {
+    outputSection.textContent = "";
+  }
+}
+
+const candidatesBox = document.getElementById("candidates");
+const targetBox = document.getElementById("target");
+const outputSection = document.getElementById("output-section");
+
+candidatesBox.addEventListener("input", function() {
+  handleInput();
+})
+
+targetBox.addEventListener("input", function() {
+  handleInput();
+})
