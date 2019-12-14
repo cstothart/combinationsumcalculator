@@ -39,7 +39,7 @@ header {
 
 textarea {
   width: 100%;
-  min-height: 10rem;
+  height: 10rem;
   font-size: 1rem;
   letter-spacing: 0.10rem;
   font-family: $primary-font-family;
@@ -48,15 +48,28 @@ textarea {
 
 input[type=text] {
   font-size: 1rem;
+  height: 1rem;
   letter-spacing: 0.10rem;
   margin: $primary-margin;
 }
 
+.alert {
+  color: rgb(255, 94, 94);
+}
+
+.placeholder {
+  color: #8e8e8e;
+}
+
 .section-container {
+  display: -ms-grid;
   display: grid;
+  -ms-grid-columns: 1fr 1fr;
   grid-template-columns: 1fr 1fr;
+  align-items: start;
 
   @media (max-width: 800px) {
+    -ms-grid-columns: 1fr;
     grid-template-columns: 1fr;
   }
 }
@@ -75,8 +88,11 @@ input[type=text] {
 }
 
 #input-section {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
   display: flex;
   flex-wrap: wrap;
+  -ms-grid-row-align: start;
 
   @media (max-width: 800px) {
     width: 100%;
@@ -85,10 +101,13 @@ input[type=text] {
 }
 
 #output-section {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;  
   font-size: 1rem;
   letter-spacing: 0.10rem;
 
   p {
     margin: $primary-margin;
+    transition: all 0.3s linear;
   }
 }

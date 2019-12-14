@@ -60,12 +60,26 @@ function extractCombinations(candidates, target) {
   }
 }
 
+function createOutputElement(text, cls) {
+  const p = document.createElement("p");
+  if (cls) {
+    p.className = cls;
+  }
+  p.textContent = text;
+  outputSection.appendChild(p);
+}
+
+function deleteOutputElements() {
+  while (outputSection.firstChild) {
+    outputSection.removeChild(outputSection.firstChild);
+  }
+}
+
 function printCombinations(combinationArray) {
-    let combinationsStr = ""
+    deleteOutputElements();
     combinationArray.forEach(function(combination) {
-      combinationsStr += combination + "\n";
+      createOutputElement(combination);
     })
-    outputSection.textContent = combinationsStr;
 }
 
 function handleInput() {
@@ -73,16 +87,25 @@ function handleInput() {
   candidates = extractNumbers(candidatesBox.value);
   if (candidates && target) {
     let combinationArray = extractCombinations(candidates, target);
-    if (combinationArray)
+    if (combinationArray) {
       printCombinations(combinationArray);
+      if (!combinationArray.length) {
+        deleteOutputElements();
+        createOutputElement("No combination of the given candidate numbers equals the given sum.");
+      }
+    }
   } else {
-    outputSection.textContent = "";
+      deleteOutputElements();
+      createOutputElement("Combinations that equal the given sum will appear here.", 
+                          "placeholder");
   }
 }
 
 const candidatesBox = document.getElementById("candidates");
 const targetBox = document.getElementById("target");
 const outputSection = document.getElementById("output-section");
+
+handleInput();
 
 candidatesBox.addEventListener("input", function() {
   handleInput();
