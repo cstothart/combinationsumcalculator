@@ -1,3 +1,94 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+$primary-font-family: 'Roboto', sans-serif;
+$color-1: #dfdddd;
+$primary-margin: 1rem;
+
+html {
+  font-size: 16px;
+  line-height: 1.3;
+
+  @media (min-width: 800px) {
+    font-size: 18px;
+  }
+
+  @media (min-width: 1200px) {
+    font-size: 20px;
+    line-height: 1.4;
+  }
+}
+
 body {
-    background-color: aqua;
+  background-color: #222222;
+  font-family: $primary-font-family;
+  color: $color-1;
+  margin: 0;
+}
+
+header {
+
+  h1 {
+    margin: $primary-margin;
+  }
+
+  p {
+    margin: $primary-margin;
+  }
+
+}
+
+textarea {
+  width: 100%;
+  min-height: 10rem;
+  font-size: 1rem;
+  letter-spacing: 0.10rem;
+  font-family: $primary-font-family;
+  margin: $primary-margin;
+}
+
+input[type=text] {
+  font-size: 1rem;
+  letter-spacing: 0.10rem;
+  margin: $primary-margin;
+}
+
+.section-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  @media (max-width: 800px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.input-style {
+  background: transparent;
+  border: 3px solid $color-1;
+  color: $color-1;
+  width: 100%;
+  padding: 1rem;
+
+  &:focus {
+    border: 3px solid rgb(197, 197, 74);
+    outline: none;
+  }
+}
+
+.input-section {
+  display: flex;
+  flex-wrap: wrap;
+
+  @media (max-width: 800px) {
+    width: 100%;
+  }
+
+}
+
+.output-section {
+  font-size: 1rem;
+  letter-spacing: 0.10rem;
+
+  p {
+    margin: $primary-margin;
+  }
 }
