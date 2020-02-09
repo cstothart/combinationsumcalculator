@@ -83,8 +83,8 @@ function printCombinations(combinationArray) {
 }
 
 function handleInput() {
-  target = extractNumbers(targetBox.value);
-  candidates = extractNumbers(candidatesBox.value);
+  const target = extractNumbers(targetBox.value);
+  const candidates = extractNumbers(candidatesBox.value);
   if (candidates && target) {
     let combinationArray = extractCombinations(candidates, target);
     if (combinationArray) {

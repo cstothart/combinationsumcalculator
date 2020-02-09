@@ -4,8 +4,8 @@
   "description": "Find all unique combinations of given numbers that equal a target number.",
   "main": "index.html",
   "scripts": {
-    "build-css": "sass --watch ./src/main.scss ./public/main.css",
-    "build-js": "babel --watch ./src -d ./public"
+    "build-css": "sass --watch ./src/main.scss main.css",
+    "build-js": "babel --watch ./src -d ."
   },
   "repository": {
     "type": "git",
