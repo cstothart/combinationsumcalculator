@@ -7,13 +7,12 @@ function sum(arr) {
 }
 
 function combinations(numArr) {
-  var func = function func(active, rest, results) {
+  const func = function func(active, rest, results) {
     if (!active.length && !rest.length) return;
-
     if (!rest.length) {
       results.push(active);
     } else {
-      var active2 = active.slice();
+      const active2 = active.slice();
       active2.push(rest[0]);
       func(active2, rest.slice(1), results);
       func(active, rest.slice(1), results);
@@ -29,12 +28,11 @@ function extractNumbers(str) {
   if (!str) {
     return false;
   } else {
-    var strNumbers = str.match(/(\d+\.\d+)|(\d+)/g);
-
+    const strNumbers = str.match(/(\d+\.\d+)|(\d+)/g);
     if (!strNumbers) {
       return false;
     } else {
-      var numbers = strNumbers.map(function (strNumber) {
+      const numbers = strNumbers.map(function (strNumber) {
         return Number(strNumber);
       });
       return numbers;
@@ -44,10 +42,10 @@ function extractNumbers(str) {
 
 function extractCombinations(candidates, target) {
   if (candidates.length >= 1 && target.length == 1) {
-    var combinationArray = [];
+    const combinationArray = [];
     combinations(candidates).forEach(function (comb) {
       if (sum(comb) == target) {
-        var combStr = "";
+        let combStr = "";
         comb.forEach(function (num, i) {
           if (i == comb.length - 1) {
             combStr += num + " = ";
@@ -66,12 +64,10 @@ function extractCombinations(candidates, target) {
 }
 
 function createOutputElement(text, cls) {
-  var p = document.createElement("p");
-
+  const p = document.createElement("p");
   if (cls) {
     p.className = cls;
   }
-
   p.textContent = text;
   outputSection.appendChild(p);
 }
@@ -90,15 +86,12 @@ function printCombinations(combinationArray) {
 }
 
 function handleInput() {
-  target = extractNumbers(targetBox.value);
-  candidates = extractNumbers(candidatesBox.value);
-
+  const target = extractNumbers(targetBox.value);
+  const candidates = extractNumbers(candidatesBox.value);
   if (candidates && target) {
-    var combinationArray = extractCombinations(candidates, target);
-
+    const combinationArray = extractCombinations(candidates, target);
     if (combinationArray) {
       printCombinations(combinationArray);
-
       if (!combinationArray.length) {
         deleteOutputElements();
         createOutputElement("No combination of the given numbers adds up to the given sum.");
@@ -110,13 +103,16 @@ function handleInput() {
   }
 }
 
-var candidatesBox = document.getElementById("candidates");
-var targetBox = document.getElementById("target");
-var outputSection = document.getElementById("output-section");
+const candidatesBox = document.getElementById("candidates");
+const targetBox = document.getElementById("target");
+const outputSection = document.getElementById("output-section");
+
 handleInput();
+
 candidatesBox.addEventListener("input", function () {
   handleInput();
 });
+
 targetBox.addEventListener("input", function () {
   handleInput();
 });
