@@ -1,9 +1,9 @@
 "use strict";
 
 var sum = function sum(arr) {
-  return arr.reduce(function (a, b) {
+  return Number(arr.reduce(function (a, b) {
     return a + b;
-  }, 0);
+  }, 0));
 };
 
 var combinations = function combinations(numArr) {
@@ -43,19 +43,19 @@ var extractNumbers = function extractNumbers(str) {
 };
 
 var extractCombinations = function extractCombinations(candidates, target) {
-  if (candidates.length >= 1 && target.length == 1) {
+  if (candidates.length >= 1 && target.length === 1) {
     var combinationArray = [];
     combinations(candidates).forEach(function (comb) {
-      if (sum(comb) == target) {
+      if (sum(comb) === target[0]) {
         var combStr = '';
         comb.forEach(function (num, i) {
-          if (i == comb.length - 1) {
+          if (i === comb.length - 1) {
             combStr += num + ' = ';
           } else {
             combStr += num + ' + ';
           }
         });
-        combStr += target;
+        combStr += target[0];
         combinationArray.push(combStr);
       }
     });

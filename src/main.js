@@ -1,5 +1,5 @@
 const sum = arr => {
-  return arr.reduce((a, b) => a + b, 0);
+  return Number(arr.reduce((a, b) => a + b, 0));
 }
 
 const combinations = numArr => {
@@ -27,26 +27,26 @@ const extractNumbers = str => {
     if (!strNumbers) {
       return false;
     } else {
-      const numbers = strNumbers.map((strNumber) => Number(strNumber));
+      const numbers = strNumbers.map(strNumber => Number(strNumber));
       return numbers;
     }
   }
 }
 
 const extractCombinations = (candidates, target) => {
-  if (candidates.length >= 1 && target.length == 1) {
+  if (candidates.length >= 1 && target.length === 1) {
     let combinationArray = [];
     combinations(candidates).forEach((comb) => {
-      if (sum(comb) == target) {
+      if (sum(comb) === target[0]) {
         let combStr = '';
         comb.forEach((num, i) => {
-          if (i == comb.length - 1) {
+          if (i === comb.length - 1) {
             combStr += num + ' = ';
           } else {
             combStr += num + ' + ';
           }
         })
-        combStr += target;
+        combStr += target[0];
         combinationArray.push(combStr);
       }
     });
