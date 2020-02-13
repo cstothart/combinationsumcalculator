@@ -1,11 +1,9 @@
-function sum(arr){
-  return arr.reduce(function(a, b) {
-    return a + b
-  }, 0);
+const sum = arr => {
+  return arr.reduce((a, b) => a + b, 0);
 }
 
-function combinations(numArr) {
-  const func = function(active, rest, results) {
+const combinations = numArr => {
+  const func = (active, rest, results) => {
     if (!active.length && !rest.length)
         return;
     if (!rest.length) {
@@ -21,7 +19,7 @@ function combinations(numArr) {
   return func([], numArr, []);
 }
 
-function extractNumbers(str) {
+const extractNumbers = str => {
   if (!str) {
     return false;
   } else {
@@ -29,25 +27,23 @@ function extractNumbers(str) {
     if (!strNumbers) {
       return false;
     } else {
-      const numbers = strNumbers.map(function(strNumber) {
-        return Number(strNumber);
-      })
+      const numbers = strNumbers.map((strNumber) => Number(strNumber));
       return numbers;
     }
   }
 }
 
-function extractCombinations(candidates, target) {
+const extractCombinations = (candidates, target) => {
   if (candidates.length >= 1 && target.length == 1) {
     let combinationArray = [];
-    combinations(candidates).forEach(function(comb) {
+    combinations(candidates).forEach((comb) => {
       if (sum(comb) == target) {
-        let combStr = "";
-        comb.forEach(function(num, i) {
+        let combStr = '';
+        comb.forEach((num, i) => {
           if (i == comb.length - 1) {
-            combStr += num + " = ";
+            combStr += num + ' = ';
           } else {
-            combStr += num + " + ";
+            combStr += num + ' + ';
           }
         })
         combStr += target;
@@ -60,8 +56,8 @@ function extractCombinations(candidates, target) {
   }
 }
 
-function createOutputElement(text, cls) {
-  const p = document.createElement("p");
+const createOutputElement = (text, cls) => {
+  const p = document.createElement('p');
   if (cls) {
     p.className = cls;
   }
@@ -69,20 +65,20 @@ function createOutputElement(text, cls) {
   outputSection.appendChild(p);
 }
 
-function deleteOutputElements() {
+const deleteOutputElements = () => {
   while (outputSection.firstChild) {
     outputSection.removeChild(outputSection.firstChild);
   }
 }
 
-function printCombinations(combinationArray) {
+const printCombinations = combinationArray => {
     deleteOutputElements();
-    combinationArray.forEach(function(combination) {
-      createOutputElement(combination);
+    combinationArray.forEach((combination) => {
+      createOutputElement(combination)
     })
 }
 
-function handleInput() {
+const handleInput = () => {
   const target = extractNumbers(targetBox.value);
   const candidates = extractNumbers(candidatesBox.value);
   if (candidates && target) {
@@ -91,26 +87,23 @@ function handleInput() {
       printCombinations(combinationArray);
       if (!combinationArray.length) {
         deleteOutputElements();
-        createOutputElement("No combination of the given numbers adds up to the given sum.");
+        createOutputElement('No combination of the given numbers adds up to ' +
+                            'the given sum.');
       }
     }
   } else {
       deleteOutputElements();
-      createOutputElement("Combinations that add up to the given sum will appear here.", 
-                          "placeholder");
+      createOutputElement('Combinations that add up to the given sum will ' +
+                          'appear here.', 'placeholder');
   }
 }
 
-const candidatesBox = document.getElementById("candidates");
-const targetBox = document.getElementById("target");
-const outputSection = document.getElementById("output-section");
+const candidatesBox = document.getElementById('candidates');
+const targetBox = document.getElementById('target');
+const outputSection = document.getElementById('output-section');
 
 handleInput();
 
-candidatesBox.addEventListener("input", function() {
-  handleInput();
-})
+candidatesBox.addEventListener('input', () => handleInput())
 
-targetBox.addEventListener("input", function() {
-  handleInput();
-})
+targetBox.addEventListener('input', () => handleInput())
