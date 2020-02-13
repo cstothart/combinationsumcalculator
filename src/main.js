@@ -20,17 +20,12 @@ const combinations = numArr => {
 }
 
 const extractNumbers = str => {
-  if (!str) {
-    return false;
-  } else {
-    const strNumbers = str.match(/(\d+\.\d+)|(\d+)/g);
-    if (!strNumbers) {
-      return false;
-    } else {
-      const numbers = strNumbers.map(strNumber => Number(strNumber));
-      return numbers;
+  let numbers = [];
+  const strNumbers = str.match(/(\d+\.\d+)|(\d+)/g);
+    if (strNumbers) {
+      numbers = strNumbers.map(strNumber => Number(strNumber));
     }
-  }
+    return numbers;
 }
 
 const extractCombinations = (candidates, target) => {

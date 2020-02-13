@@ -26,20 +26,16 @@ var combinations = function combinations(numArr) {
 };
 
 var extractNumbers = function extractNumbers(str) {
-  if (!str) {
-    return false;
-  } else {
-    var strNumbers = str.match(/(\d+\.\d+)|(\d+)/g);
+  var numbers = [];
+  var strNumbers = str.match(/(\d+\.\d+)|(\d+)/g);
 
-    if (!strNumbers) {
-      return false;
-    } else {
-      var numbers = strNumbers.map(function (strNumber) {
-        return Number(strNumber);
-      });
-      return numbers;
-    }
+  if (strNumbers) {
+    numbers = strNumbers.map(function (strNumber) {
+      return Number(strNumber);
+    });
   }
+
+  return numbers;
 };
 
 var extractCombinations = function extractCombinations(candidates, target) {
