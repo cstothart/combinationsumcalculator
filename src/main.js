@@ -22,10 +22,10 @@ const combinations = numArr => {
 const extractNumbers = str => {
   let numbers = [];
   const strNumbers = str.match(/(\d+\.\d+)|(\d+)/g);
-    if (strNumbers) {
-      numbers = strNumbers.map(strNumber => Number(strNumber));
-    }
-    return numbers;
+  if (strNumbers) {
+    numbers = strNumbers.map(strNumber => Number(strNumber));
+  }
+  return numbers;
 }
 
 const extractCombinations = (candidates, target) => {
