@@ -24,15 +24,28 @@ var combinations = function combinations(numArr) {
 
   return func([], numArr, []);
 };
+/**
+ * Extract numbers from a string.
+ * @param {String} str String to extract numbers from.
+ * @return {Array} Extracted numbers.
+ */
+
 
 var extractNumbers = function extractNumbers(str) {
-  var numbers = [];
   var strNumbers = str.match(/(\d+\.\d+)|(\d+)/g);
+  var numbers = [];
   if (strNumbers) numbers = strNumbers.map(function (strNumber) {
     return Number(strNumber);
   });
   return numbers;
 };
+/**
+ * Extract combinations of candidate numbers that add-up to target sum. 
+ * @param {Array<Number>} candidates Candidate numbers.
+ * @param {Array<Number>} target Target sum.
+ * @return {Array} Array containing combinations.
+ */
+
 
 var extractCombinations = function extractCombinations(candidates, target) {
   if (candidates.length >= 1 && target.length === 1) {
@@ -53,7 +66,7 @@ var extractCombinations = function extractCombinations(candidates, target) {
     });
     return combinationArray;
   } else {
-    return false;
+    return [];
   }
 };
 

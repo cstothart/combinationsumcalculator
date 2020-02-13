@@ -19,13 +19,24 @@ const combinations = numArr => {
   return func([], numArr, []);
 }
 
+/**
+ * Extract numbers from a string.
+ * @param {String} str String to extract numbers from.
+ * @return {Array} Extracted numbers.
+ */
 const extractNumbers = str => {
-  let numbers = [];
   const strNumbers = str.match(/(\d+\.\d+)|(\d+)/g);
+  let numbers = [];
   if (strNumbers) numbers = strNumbers.map(strNumber => Number(strNumber));
   return numbers;
 }
 
+/**
+ * Extract combinations of candidate numbers that add-up to target sum. 
+ * @param {Array<Number>} candidates Candidate numbers.
+ * @param {Array<Number>} target Target sum.
+ * @return {Array} Array containing combinations.
+ */
 const extractCombinations = (candidates, target) => {
   if (candidates.length >= 1 && target.length === 1) {
     let combinationArray = [];
@@ -45,7 +56,7 @@ const extractCombinations = (candidates, target) => {
     });
     return combinationArray;
   } else {
-    return false;
+    return [];
   }
 }
 
