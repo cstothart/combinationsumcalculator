@@ -28,13 +28,9 @@ var combinations = function combinations(numArr) {
 var extractNumbers = function extractNumbers(str) {
   var numbers = [];
   var strNumbers = str.match(/(\d+\.\d+)|(\d+)/g);
-
-  if (strNumbers) {
-    numbers = strNumbers.map(function (strNumber) {
-      return Number(strNumber);
-    });
-  }
-
+  if (strNumbers) numbers = strNumbers.map(function (strNumber) {
+    return Number(strNumber);
+  });
   return numbers;
 };
 
