@@ -1,5 +1,10 @@
 "use strict";
 
+/**
+ * Get the sum of the numbers in an array.
+ * @param {Array<number>} arr Array containing numbers.
+ * @return {number} Sum of the numbers.
+ */
 var sum = function sum(arr) {
   return Number(arr.reduce(function (a, b) {
     return a + b;
@@ -26,7 +31,7 @@ var combinations = function combinations(numArr) {
 };
 /**
  * Extract numbers from a string.
- * @param {String} str String to extract numbers from.
+ * @param {string} str String to extract numbers from.
  * @return {Array} Extracted numbers.
  */
 
@@ -41,8 +46,8 @@ var extractNumbers = function extractNumbers(str) {
 };
 /**
  * Extract combinations of candidate numbers that add-up to target sum. 
- * @param {Array<Number>} candidates Candidate numbers.
- * @param {Array<Number>} target Target sum.
+ * @param {Array<number>} candidates Candidate numbers.
+ * @param {Array<number>} target Target sum.
  * @return {Array} Array containing combinations.
  */
 
@@ -69,16 +74,17 @@ var extractCombinations = function extractCombinations(candidates, target) {
     return [];
   }
 };
+/**
+ * Create a p element and place a string in it.
+ * @param {string} outputString String to place in the p element.
+ * @return {HTMLElement} p element containing the string.
+ */
 
-var createOutputElement = function createOutputElement(text, cls) {
+
+var createOutputElement = function createOutputElement(outputString) {
   var p = document.createElement('p');
-
-  if (cls) {
-    p.className = cls;
-  }
-
-  p.textContent = text;
-  outputSection.appendChild(p);
+  p.textContent = outputString;
+  return p;
 };
 
 var deleteOutputElements = function deleteOutputElements() {
@@ -90,7 +96,8 @@ var deleteOutputElements = function deleteOutputElements() {
 var printCombinations = function printCombinations(combinationArray) {
   deleteOutputElements();
   combinationArray.forEach(function (combination) {
-    createOutputElement(combination);
+    var p = createOutputElement(combination);
+    outputSection.appendChild(p);
   });
 };
 

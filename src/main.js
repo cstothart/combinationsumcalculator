@@ -1,3 +1,9 @@
+
+/**
+ * Get the sum of the numbers in an array.
+ * @param {Array<number>} arr Array containing numbers.
+ * @return {number} Sum of the numbers.
+ */
 const sum = arr => {
   return Number(arr.reduce((a, b) => a + b, 0));
 }
@@ -21,7 +27,7 @@ const combinations = numArr => {
 
 /**
  * Extract numbers from a string.
- * @param {String} str String to extract numbers from.
+ * @param {string} str String to extract numbers from.
  * @return {Array} Extracted numbers.
  */
 const extractNumbers = str => {
@@ -33,8 +39,8 @@ const extractNumbers = str => {
 
 /**
  * Extract combinations of candidate numbers that add-up to target sum. 
- * @param {Array<Number>} candidates Candidate numbers.
- * @param {Array<Number>} target Target sum.
+ * @param {Array<number>} candidates Candidate numbers.
+ * @param {Array<number>} target Target sum.
  * @return {Array} Array containing combinations.
  */
 const extractCombinations = (candidates, target) => {
@@ -60,13 +66,15 @@ const extractCombinations = (candidates, target) => {
   }
 }
 
-const createOutputElement = (text, cls) => {
+/**
+ * Create a p element and place a string in it.
+ * @param {string} outputString String to place in the p element.
+ * @return {HTMLElement} p element containing the string.
+ */
+const createOutputElement = (outputString) => {
   const p = document.createElement('p');
-  if (cls) {
-    p.className = cls;
-  }
-  p.textContent = text;
-  outputSection.appendChild(p);
+  p.textContent = outputString;
+  return p;
 }
 
 const deleteOutputElements = () => {
@@ -78,7 +86,8 @@ const deleteOutputElements = () => {
 const printCombinations = combinationArray => {
     deleteOutputElements();
     combinationArray.forEach((combination) => {
-      createOutputElement(combination)
+      const p = createOutputElement(combination);
+      outputSection.appendChild(p);
     })
 }
 
