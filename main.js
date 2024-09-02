@@ -1,41 +1,39 @@
 "use strict";
 
 /**
- * Get the sum of the numbers in an array.
- * @param {Array<number>} arr Array containing numbers.
- * @return {number} Sum of the numbers.
+ * Find all combinations of candidates that sum up to the target value using backtracking.
+ * @param {Array<number>} candidates Array of candidate numbers.
+ * @param {number} target Target sum.
+ * @return {Array<Array<number>>} Array of combinations that sum up to the target.
  */
-var sum = function sum(arr) {
-  return Number(arr.reduce(function (a, b) {
-    return a + b;
-  }, 0));
-};
+var findCombinations = function findCombinations(candidates, target) {
+  var results = [];
 
-var combinations = function combinations(numArr) {
-  var func = function func(active, rest, results) {
-    if (!active.length && !rest.length) return;
-
-    if (!rest.length) {
-      results.push(active);
-    } else {
-      var active2 = active.slice();
-      active2.push(rest[0]);
-      func(active2, rest.slice(1), results);
-      func(active, rest.slice(1), results);
+  function backtrack(start, currentCombination, currentSum) {
+    if (currentSum === target) {
+      results.push(currentCombination.slice());
+      return;
+    }
+    if (currentSum > target) {
+      return;
     }
 
-    return results;
-  };
+    for (var i = start; i < candidates.length; i++) {
+      currentCombination.push(candidates[i]);
+      backtrack(i + 1, currentCombination, currentSum + candidates[i]);
+      currentCombination.pop(); // Backtrack
+    }
+  }
 
-  return func([], numArr, []);
+  backtrack(0, [], 0);
+  return results;
 };
+
 /**
  * Extract numbers from a string.
  * @param {string} str String to extract numbers from.
- * @return {Array} Extracted numbers.
+ * @return {Array<number>} Extracted numbers.
  */
-
-
 var extractNumbers = function extractNumbers(str) {
   var strNumbers = str.match(/(\d+\.\d+)|(\d+)/g);
   var numbers = [];
@@ -44,43 +42,30 @@ var extractNumbers = function extractNumbers(str) {
   });
   return numbers;
 };
+
 /**
- * Extract combinations of candidate numbers that add-up to target sum. 
+ * Extract combinations of candidate numbers that add up to the target sum. 
  * @param {Array<number>} candidates Candidate numbers.
- * @param {Array<number>} target Target sum.
- * @return {Array} Array containing combinations.
+ * @param {number} target Target sum.
+ * @return {Array<string>} Array containing formatted combinations.
  */
-
-
 var extractCombinations = function extractCombinations(candidates, target) {
-  if (candidates.length >= 1 && target.length === 1) {
-    var combinationArray = [];
-    combinations(candidates).forEach(function (comb) {
-      if (sum(comb) === target[0]) {
-        var combStr = '';
-        comb.forEach(function (num, i) {
-          if (i === comb.length - 1) {
-            combStr += num + ' = ';
-          } else {
-            combStr += num + ' + ';
-          }
-        });
-        combStr += target[0];
-        combinationArray.push(combStr);
-      }
-    });
-    return combinationArray;
-  } else {
-    return [];
-  }
+  var combinationArray = [];
+  var combinations = findCombinations(candidates, target);
+
+  combinations.forEach(function (comb) {
+    var combStr = comb.join(' + ') + ' = ' + target;
+    combinationArray.push(combStr);
+  });
+
+  return combinationArray;
 };
+
 /**
  * Create a p element and place a string in it.
  * @param {string} outputString String to place in the p element.
  * @return {HTMLElement} p element containing the string.
  */
-
-
 var createOutputElement = function createOutputElement(outputString) {
   var p = document.createElement('p');
   p.textContent = outputString;
@@ -105,20 +90,22 @@ var handleInput = function handleInput() {
   var target = extractNumbers(targetBox.value);
   var candidates = extractNumbers(candidatesBox.value);
 
-  if (candidates && target) {
-    var combinationArray = extractCombinations(candidates, target);
+  if (candidates.length > 0 && target.length === 1) {
+    var combinationArray = extractCombinations(candidates, target[0]);
 
-    if (combinationArray) {
+    if (combinationArray.length > 0) {
       printCombinations(combinationArray);
-
-      if (!combinationArray.length) {
-        deleteOutputElements();
-        createOutputElement('No combination of the given numbers adds up to ' + 'the given sum.');
-      }
+    } else {
+      deleteOutputElements();
+      var noCombinationMessage = 'No combination of the given numbers adds up to ' + target[0] + '.';
+      var p = createOutputElement(noCombinationMessage);
+      outputSection.appendChild(p);
     }
   } else {
     deleteOutputElements();
-    createOutputElement('Combinations that add up to the given sum will ' + 'appear here.', 'placeholder');
+    var placeholderMessage = 'Combinations that add up to the given sum will appear here.';
+    var p = createOutputElement(placeholderMessage);
+    outputSection.appendChild(p);
   }
 };
 
@@ -126,9 +113,5 @@ var candidatesBox = document.getElementById('candidates');
 var targetBox = document.getElementById('target');
 var outputSection = document.getElementById('output-section');
 handleInput();
-candidatesBox.addEventListener('input', function () {
-  return handleInput();
-});
-targetBox.addEventListener('input', function () {
-  return handleInput();
-});
+candidatesBox.addEventListener('input', handleInput);
+targetBox.addEventListener('input', handleInput);
